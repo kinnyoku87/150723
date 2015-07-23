@@ -1,7 +1,5 @@
-package UU.show
-{
+package UU.show {
 	import com.greensock.TweenLite;
-	import com.greensock.easing.Cubic;
 	import com.greensock.easing.Linear;
 	
 	import flash.events.AccelerometerEvent;
@@ -127,7 +125,13 @@ package UU.show
 			["bottom/cc.png", 540, 1920 - 132],
 			["bottom/dd.png", 1080 - 132, 1920 - 132],
 		];
-		
+		private var _manualViewData:Array = 
+		[
+			["bottom/aa.png", 132, 1920 - 132],
+			["bottom/bb.png", 336, 1920 - 132],
+			["bottom/cc.png", 540, 1920 - 132],
+			["bottom/dd.png", 1080 - 132, 1920 - 132],
+		];
 		
 		private function ____doCreateImg( AY:Array ) : ImageUU {
 			var img:ImageUU;
@@ -137,7 +141,7 @@ package UU.show
 			this.getFusion().addNode(img);
 			img.x = AY[1];
 			img.y = AY[2];
-//			img.addEventListener(ATouchEvent.CLICsK, onClick);
+//			img.addEventListener(ATouchEvent.CLICK, onClick);
 			return img;
 		}
 		
