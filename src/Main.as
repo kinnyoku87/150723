@@ -10,7 +10,7 @@ package
 	import org.agony2d.core.MobilePlatform;
 	import org.agony2d.logging.FlashTextLogger;
 	
-	[SWF(width="450", height="800", backgroundColor = "0x0")]
+	[SWF(width="450", height="800", backgroundColor = "0x0", frameRate="60")]
 	public class Main extends Sprite
 	{
 		public function Main()

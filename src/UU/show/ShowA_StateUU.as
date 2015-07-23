@@ -7,8 +7,10 @@ package UU.show {
 	
 	import org.agony2d.Agony;
 	import org.agony2d.events.ATouchEvent;
+	import org.agony2d.flashApi.FusionUU;
 	import org.agony2d.flashApi.ImageUU;
 	import org.agony2d.flashApi.StateUU;
+	import org.agony2d.flashApi.core.BranchUU;
 
 	public class ShowA_StateUU extends StateUU
 	{
@@ -21,26 +23,39 @@ package UU.show {
 			i = 0;
 			l = _staticViewData.length;
 			while(i<l){
-				this.____doCreateImg(_staticViewData[i++]);
+				this.____doCreateImg(_staticViewData[i++], this.getFusion());
 			}
 			// top
 			i = 0;
 			l = _topViewData.length;
 			while(i<l){
-				_rotateList.push(this.____doCreatePivotImg(_topViewData[i++]));
+				_rotateList.push(this.____doCreatePivotImg(_topViewData[i++], this.getFusion()));
 			}
 			// chip
 			i = 0;
 			l = _chipViewData.length;
 			while(i<l){
-				_rotateList.push(this.____doCreatePivotImg(_chipViewData[i++]));
+				_rotateList.push(this.____doCreatePivotImg(_chipViewData[i++], this.getFusion()));
 			}
 			// bottom
 			i = 0;
 			l = _bottomViewData.length;
 			while(i<l){
-				_rotateList.push(this.____doCreatePivotImg(_bottomViewData[i++]));
+				_rotateList.push(this.____doCreatePivotImg(_bottomViewData[i++], this.getFusion()));
 			}
+			
+			// manual A
+			_manualFN_A = new FusionUU;
+			this.getFusion().addNode(_manualFN_A);
+			i = 0;
+			l = _manualView_A_Data.length;
+			while(i<l){
+				_manualList.push(this.____doCreatePivotImg(_manualView_A_Data[i++], this.getFusion()));
+			}
+			// manual B
+			_manualFN_B = new FusionUU;
+			this.getFusion().addNode(_manualFN_B);
+			
 			
 //			trace(Accelerometer.isSupported);
 			if(Accelerometer.isSupported){
@@ -57,8 +72,12 @@ package UU.show {
 		
 		private var _acce:Accelerometer;
 		
+		private var _manualList:Array = [];
 		private var _rotateList:Array = [];
-		private var _bg:ImageUU;
+		private var _manualFN_A:FusionUU;
+		private var _manualFN_B:FusionUU;
+		
+		
 		private var _staticViewData:Array = 
 		[
 			["chip/BJ.png", 0, 0],
@@ -123,36 +142,37 @@ package UU.show {
 			["bottom/aa.png", 132, 1920 - 132],
 			["bottom/bb.png", 336, 1920 - 132],
 			["bottom/cc.png", 540, 1920 - 132],
-			["bottom/dd.png", 1080 - 132, 1920 - 132],
+			["bottom/dd.png", 1080 - 132, 1920 - 132]
 		];
-		private var _manualViewData:Array = 
+		private var _manualView_A_Data:Array = 
 		[
-			["bottom/aa.png", 132, 1920 - 132],
-			["bottom/bb.png", 336, 1920 - 132],
-			["bottom/cc.png", 540, 1920 - 132],
-			["bottom/dd.png", 1080 - 132, 1920 - 132],
+			["chip/word_makeup.PNG", 915,        720 + 158 * 0],
+			["chip/word_speedy.PNG", 915,        720 + 158 * 1],
+			["chip/word_bai.PNG",    915,        720 + 158 * 2],
+			["chip/word_ISO.PNG",    915,        720 + 158 * 3],
+			["chip/word_focus.PNG",  915,        720 + 158 * 4]
 		];
 		
-		private function ____doCreateImg( AY:Array ) : ImageUU {
+		private function ____doCreateImg( AY:Array, branch:BranchUU ) : ImageUU {
 			var img:ImageUU;
 			
 			img = new ImageUU(true);
 			img.textureId = AY[0];
-			this.getFusion().addNode(img);
+			branch.addNode(img);
 			img.x = AY[1];
 			img.y = AY[2];
 //			img.addEventListener(ATouchEvent.CLICK, onClick);
 			return img;
 		}
 		
-		private function ____doCreatePivotImg( AY:Array ) : ImageUU {
+		private function ____doCreatePivotImg( AY:Array, branch:BranchUU ) : ImageUU {
 			var img:ImageUU;
 			
 			img = new ImageUU(true);
 			img.textureId = AY[0];
 			img.pivotX = img.getWidth() * .5;
 			img.pivotY = img.getHeight() * .5
-			this.getFusion().addNode(img);
+			branch.addNode(img);
 			img.x = AY[1];
 			img.y = AY[2];
 			//			img.addEventListener(ATouchEvent.CLICsK, onClick);
