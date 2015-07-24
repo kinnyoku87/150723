@@ -3,14 +3,24 @@ package UU.show {
 	import com.greensock.easing.Linear;
 	
 	import flash.events.AccelerometerEvent;
+	import flash.events.ActivityEvent;
+	import flash.events.StageVideoAvailabilityEvent;
+	import flash.events.StageVideoEvent;
+	import flash.geom.Rectangle;
+	import flash.media.Camera;
+	import flash.media.StageVideo;
+	import flash.media.StageVideoAvailability;
+	import flash.media.Video;
 	import flash.sensors.Accelerometer;
 	
 	import org.agony2d.Agony;
+	import org.agony2d.core.Adapter;
 	import org.agony2d.events.ATouchEvent;
 	import org.agony2d.flashApi.FusionUU;
 	import org.agony2d.flashApi.ImageUU;
 	import org.agony2d.flashApi.StateUU;
 	import org.agony2d.flashApi.core.BranchUU;
+	import org.agony2d.flashApi.flash.RawSpriteUU;
 
 	public class ShowA_StateUU extends StateUU
 	{
@@ -62,6 +72,61 @@ package UU.show {
 				_acce = new Accelerometer;
 				_acce.addEventListener(AccelerometerEvent.UPDATE, ____onAcceUpdate);
 			}
+			
+			this.getRoot().getAdapter().getStage().addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, onStageVideo);
+		}
+		
+		private var stageVideo:StageVideo;
+		
+		private function onStageVideo(e:StageVideoAvailabilityEvent):void {
+			trace(e.availability);
+			
+			stageVideo = this.getRoot().getAdapter().getStage().stageVideos[0];
+			
+			trace(Camera.isSupported);
+			if(Camera.isSupported){
+				var video:Video;
+				var camera:Camera;
+				var rawSprite:RawSpriteUU;
+				var w:int;
+				var h:int;
+				var rect_A:Rectangle;
+				var adapter:Adapter;
+				
+				adapter = this.getRoot().getAdapter();
+				
+				rawSprite = new RawSpriteUU;
+				rawSprite.rotation = 90;
+				rawSprite.x = this.getRoot().getAdapter().rootWidth;
+				this.getFusion().addNodeAt(rawSprite, 0);
+				
+				if(stageVideo){
+					stageVideo.viewPort = rect_A = new Rectangle(this.getRoot().getAdapter().rawRootX, this.getRoot().getAdapter().rawRootY, this.getRoot().getAdapter().rawRootWidth, this.getRoot().getAdapter().rawRootHeight);
+					trace(rect_A);
+				}
+				camera = Camera.getCamera();
+				if(camera){
+					camera.setMode(this.getRoot().getAdapter().rawRootHeight, this.getRoot().getAdapter().rawRootWidth, 12);
+					camera.setQuality(0, 10);
+					camera.addEventListener(ActivityEvent.ACTIVITY, activityHandler);
+//					stageVideo.addEventListener(StageVideoEvent.RENDER_STATE, onRenderState);
+//					stageVideo.attachCamera(camera);
+					video = new Video(adapter.rootHeight, adapter.rootWidth);
+					video.attachCamera(camera);
+					rawSprite.addChild(video);
+					
+					trace(rawSprite.getWidth() * adapter.getFinalRatio(), rawSprite.getHeight() * adapter.getFinalRatio());
+				}
+				
+			}
+		}
+		
+		private function activityHandler(event:ActivityEvent):void {
+			trace("activityHandler: " + event);
+		}
+		
+		private function onRenderState(e:StageVideoEvent):void{
+			trace("onRenderState" + e.codecInfo);
 		}
 		
 		private const NORMAL:int = 0;
@@ -80,7 +145,7 @@ package UU.show {
 		
 		private var _staticViewData:Array = 
 		[
-			["chip/BJ.png", 0, 0],
+//			["chip/BJ.png", 0, 0],
 			["chip/toumingdi.png", 0, 0],
 			["chip/arc.png", 101, 645],
 			["chip/arc.png", 101, 645 + 158 * 1],
