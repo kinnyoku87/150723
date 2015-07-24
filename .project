@@ -34,11 +34,6 @@
 			<location>D:/Agony2D/agony2d-core/source/src</location>
 		</link>
 		<link>
-			<name>[source path] agony2d-drive-source-src</name>
-			<type>2</type>
-			<location>D:/Agony2D/agony2d-drive/source/src</location>
-		</link>
-		<link>
 			<name>[source path] examples-build</name>
 			<type>2</type>
 			<location>D:/Agony2D/agony2d-build-v.1.1.8/examples-build</location>

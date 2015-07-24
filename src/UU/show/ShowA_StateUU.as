@@ -57,15 +57,26 @@ package UU.show {
 			// manual A
 			_manualFN_A = new FusionUU;
 			this.getFusion().addNode(_manualFN_A);
+			_manualFN_A.alpha = 0.0;
 			i = 0;
 			l = _manualView_A_Data.length;
 			while(i<l){
-				_manualList.push(this.____doCreatePivotImg(_manualView_A_Data[i++], this.getFusion()));
+				_manualListA.push(this.____doCreatePivotImg(_manualView_A_Data[i++], _manualFN_A));
 			}
+			
 			// manual B
 			_manualFN_B = new FusionUU;
 			this.getFusion().addNode(_manualFN_B);
-			
+			_manualFN_B.alpha = 0.0;
+			i = 0;
+			l = _manualView_B_Data.length;
+			while(i<l){
+				img_A = this.____doCreatePivotImg(_manualView_B_Data[i++], _manualFN_B);
+				img_A.pivotX = img_A.getWidth() * .5;
+				img_A.pivotY = img_A.getHeight() * .5;
+				img_A.rotation = 90;
+				_manualListB.push(img_A);
+			}
 			
 //			trace(Accelerometer.isSupported);
 			if(Accelerometer.isSupported){
@@ -73,7 +84,7 @@ package UU.show {
 				_acce.addEventListener(AccelerometerEvent.UPDATE, ____onAcceUpdate);
 			}
 			
-			this.getRoot().getAdapter().getStage().addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, onStageVideo);
+//			this.getRoot().getAdapter().getStage().addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, onStageVideo);
 		}
 		
 		private var stageVideo:StageVideo;
@@ -137,7 +148,8 @@ package UU.show {
 		
 		private var _acce:Accelerometer;
 		
-		private var _manualList:Array = [];
+		private var _manualListA:Array = [];
+		private var _manualListB:Array = [];
 		private var _rotateList:Array = [];
 		private var _manualFN_A:FusionUU;
 		private var _manualFN_B:FusionUU;
@@ -145,7 +157,7 @@ package UU.show {
 		
 		private var _staticViewData:Array = 
 		[
-//			["chip/BJ.png", 0, 0],
+			["chip/BJ.png", 0, 0],
 			["chip/toumingdi.png", 0, 0],
 			["chip/arc.png", 101, 645],
 			["chip/arc.png", 101, 645 + 158 * 1],
@@ -217,6 +229,14 @@ package UU.show {
 			["chip/word_ISO.PNG",    915,        720 + 158 * 3],
 			["chip/word_focus.PNG",  915,        720 + 158 * 4]
 		];
+		private var _manualView_B_Data:Array = 
+		[
+			["chip/word_makeup02.PNG", 1035,        700 + 158 * 0],
+			["chip/word_speedy02.PNG", 1035,        700 + 158 * 1],
+			["chip/word_bai02.PNG",    1035,        700 + 158 * 2],
+			["chip/word_ISO02.PNG",    1035,        700 + 158 * 3],
+			["chip/word_focus02.PNG",  1035,        700 + 158 * 4]
+		];
 		
 		private function ____doCreateImg( AY:Array, branch:BranchUU ) : ImageUU {
 			var img:ImageUU;
@@ -280,17 +300,47 @@ package UU.show {
 					img_A = _rotateList[i++];
 					TweenLite.to(img_A, 0.5, {rotation:0, ease:Linear.easeOut});
 				}
+				_manualFN_B.alpha = 1.0;
+				TweenLite.to(_manualFN_B, 0.25, {alpha:0.0, ease:Linear.easeOut});
+				_manualFN_A.alpha = 0.0;
+				TweenLite.to(_manualFN_A, 0.25, {alpha:1.0, delay:0.3, ease:Linear.easeOut});
 			}
 			else if(_orientationFlag == TO_LEFT) {
 				while(i<l){
 					img_A = _rotateList[i++];
 					TweenLite.to(img_A, 0.5, {rotation:90, ease:Linear.easeOut});
+					
+				}
+				
+				_manualFN_A.alpha = 1.0;
+				TweenLite.to(_manualFN_A, 0.25, {alpha:0.0, ease:Linear.easeOut});
+				_manualFN_B.alpha = 0.0;
+				TweenLite.to(_manualFN_B, 0.25, {alpha:1.0, delay:0.2, ease:Linear.easeOut});
+				
+				i = 0;
+				l = _manualListB.length;
+				while(i<l){
+					img_A = _manualListB[i++];
+					img_A.rotation = 90;
 				}
 			}
 			else if(_orientationFlag == TO_RIGHT) {
 				while(i<l){
 					img_A = _rotateList[i++];
 					TweenLite.to(img_A, 0.5, {rotation:-90, ease:Linear.easeOut});
+					
+				}
+				
+				_manualFN_A.alpha = 1.0;
+				TweenLite.to(_manualFN_A, 0.25, {alpha:0.0, ease:Linear.easeOut});
+				_manualFN_B.alpha = 0.0;
+				TweenLite.to(_manualFN_B, 0.25, {alpha:1.0, delay:0.2, ease:Linear.easeOut});
+				
+				i = 0;
+				l = _manualListB.length;
+				while(i<l){
+					img_A = _manualListB[i++];
+					img_A.rotation = -90;
 				}
 			}
 		}
