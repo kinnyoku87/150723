@@ -84,7 +84,7 @@ package UU.show {
 				_acce.addEventListener(AccelerometerEvent.UPDATE, ____onAcceUpdate);
 			}
 			
-//			this.getRoot().getAdapter().getStage().addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, onStageVideo);
+			this.getRoot().getAdapter().getStage().addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, onStageVideo);
 		}
 		
 		private var stageVideo:StageVideo;
@@ -111,21 +111,25 @@ package UU.show {
 				rawSprite.x = this.getRoot().getAdapter().rootWidth;
 				this.getFusion().addNodeAt(rawSprite, 0);
 				
-				if(stageVideo){
-					stageVideo.viewPort = rect_A = new Rectangle(this.getRoot().getAdapter().rawRootX, this.getRoot().getAdapter().rawRootY, this.getRoot().getAdapter().rawRootWidth, this.getRoot().getAdapter().rawRootHeight);
-					trace(rect_A);
-				}
+//				if(stageVideo){
+//					stageVideo.viewPort = rect_A = new Rectangle(0, 0, this.getRoot().getAdapter().rawScreenWidth, this.getRoot().getAdapter().rawScreenHeight);
+//					trace(rect_A);
+//				}
+				
 				camera = Camera.getCamera();
 				if(camera){
-					camera.setMode(this.getRoot().getAdapter().rawRootHeight, this.getRoot().getAdapter().rawRootWidth, 12);
+					camera.setMode(this.getRoot().getAdapter().rawScreenHeight, this.getRoot().getAdapter().rawScreenWidth, 12);
+//					camera.setMode(320, 240, 12);
 					camera.setQuality(0, 10);
 					camera.addEventListener(ActivityEvent.ACTIVITY, activityHandler);
+					
 //					stageVideo.addEventListener(StageVideoEvent.RENDER_STATE, onRenderState);
 //					stageVideo.attachCamera(camera);
+					
 					video = new Video(adapter.rootHeight, adapter.rootWidth);
+//					video = new Video(320, 240);
 					video.attachCamera(camera);
 					rawSprite.addChild(video);
-					
 					trace(rawSprite.getWidth() * adapter.getFinalRatio(), rawSprite.getHeight() * adapter.getFinalRatio());
 				}
 				
@@ -137,7 +141,7 @@ package UU.show {
 		}
 		
 		private function onRenderState(e:StageVideoEvent):void{
-			trace("onRenderState" + e.codecInfo);
+			trace("onRenderState: " + e.status);
 		}
 		
 		private const NORMAL:int = 0;
@@ -157,7 +161,7 @@ package UU.show {
 		
 		private var _staticViewData:Array = 
 		[
-			["chip/BJ.png", 0, 0],
+//			["chip/BJ.png", 0, 0],
 			["chip/toumingdi.png", 0, 0],
 			["chip/arc.png", 101, 645],
 			["chip/arc.png", 101, 645 + 158 * 1],
