@@ -57,7 +57,7 @@ package UU.show {
 			// manual A
 			_manualFN_A = new FusionUU;
 			this.getFusion().addNode(_manualFN_A);
-			_manualFN_A.alpha = 0.0;
+//			_manualFN_A.alpha = 0.0;
 			i = 0;
 			l = _manualView_A_Data.length;
 			while(i<l){
@@ -67,7 +67,7 @@ package UU.show {
 			// manual B
 			_manualFN_B = new FusionUU;
 			this.getFusion().addNode(_manualFN_B);
-			_manualFN_B.alpha = 0.0;
+//			_manualFN_B.alpha = 0.0;
 			i = 0;
 			l = _manualView_B_Data.length;
 			while(i<l){
@@ -84,7 +84,7 @@ package UU.show {
 				_acce.addEventListener(AccelerometerEvent.UPDATE, ____onAcceUpdate);
 			}
 			
-			this.getRoot().getAdapter().getStage().addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, onStageVideo);
+//			this.getRoot().getAdapter().getStage().addEventListener(StageVideoAvailabilityEvent.STAGE_VIDEO_AVAILABILITY, onStageVideo);
 		}
 		
 		private var stageVideo:StageVideo;
@@ -161,61 +161,63 @@ package UU.show {
 		
 		private var _staticViewData:Array = 
 		[
-//			["chip/BJ.png", 0, 0],
-			["chip/toumingdi.png", 0, 0],
+			["chip/BJ.png", 0, 0,   0],
+			["chip/toumingdi.png", 0, 0,   0],
 			["chip/arc.png", 101, 645],
-			["chip/arc.png", 101, 645 + 158 * 1],
-			["chip/arc.png", 101, 645 + 158 * 2],
-			["chip/arc.png", 101, 645 + 158 * 3],
-			["chip/arc.png", 101, 645 + 158 * 4],
+			["chip/arc.png", 101, 645 + 158 * 1,   0],
+			["chip/arc.png", 101, 645 + 158 * 2,   0],
+			["chip/arc.png", 101, 645 + 158 * 3,   0],
+			["chip/arc.png", 101, 645 + 158 * 4,   0],
 		];
 		private var _topViewData:Array = 
 		[
-			["top/a.png", 105, 85],
-			["top/b.png", 395, 85],
-			["top/c.png", 685, 85],
-			["top/d.png", 975, 85],
+			["top/a.png", 105, 85,   0],
+			["top/b.png", 395, 85,   0],
+			["top/c.png", 685, 85,   0],
+			["top/d.png", 975, 85,   0],
 		];
 		private var _chipViewData:Array = 
 		[
-			["chip/N-2.PNG", 110, 650],
-			["chip/N-1.PNG", 325, 625],
-			["chip/icon_0005_.png", 540, 645],
-			["chip/N+1.PNG", 755, 625],
-			["chip/N+2.PNG", 970, 650],
+			["chip/N-2.PNG", 110, 650,   0],
+			["chip/N-1.PNG", 325, 625,   0],
+			["chip/icon_0005_.png", 540, 645,   0],
+			["chip/N+1.PNG", 755, 625,   0],
+			["chip/N+2.PNG", 970, 650,   0],
 			
-			["chip/icon_0006-sel.png", 780, 660 + 158],
-			["chip/+.png", 970, 650 + 158],
+//			["chip/icon_0006-sel.png", 780, 660 + 158,   0],
+			["chip/icon_0006-sel.png", 960, 680 + 158,   0],
+			["chip/+.png", 970, 650 + 158,   0],
 			
-			["chip/icon_0009_WB.png", 105,           690 + 158 * 2],
-			["chip/_0004_light.png",  105 + 170 * 1, 625 + 158 * 2],
-			["chip/_0005_.png",       105 + 170 * 2, 610 + 158 * 2],
-			["chip/_0003_sun.png",    105 + 170 * 3, 610 + 158 * 2],
-			["chip/_0002_cloud.png",  105 + 170 * 4, 620 + 158 * 2],
-			["chip/duli.png",         955,           640 + 158 * 2],
+			["chip/icon_0009_WB.png", 105,           690 + 158 * 2,   0],
+			["chip/_0004_light.png",  105 + 170 * 1, 625 + 158 * 2,   0],
+			["chip/_0005_.png",       105 + 170 * 2, 610 + 158 * 2,   0],
+			["chip/_0003_sun.png",    105 + 170 * 3, 610 + 158 * 2,   0],
+			["chip/_0002_cloud.png",  105 + 170 * 4, 620 + 158 * 2,   0],
+			["chip/duli.png",         955,           640 + 158 * 2,   0],
 			
-			["chip/icon_0011_ISO.png", 105,           680 + 158 * 3],
-			["chip/N100.PNG",          105 + 120 * 1, 635 + 158 * 3],
-			["chip/N200.PNG",          105 + 120 * 2, 620 + 158 * 3],
-			["chip/N400.PNG",          105 + 120 * 3, 610 + 158 * 3],
-			["chip/N600.PNG",          105 + 120 * 4, 610 + 158 * 3],
-			["chip/N800.PNG",          105 + 120 * 5, 615 + 158 * 3],
-			["chip/N1600.PNG",         105 + 120 * 6, 630 + 158 * 3],
-			["chip/N3200.PNG",         105 + 120 * 7, 645 + 158 * 3],
+//			["chip/icon_0011_ISO.png", 105,           680 + 158 * 3,   0],
+			["chip/icon_0011_ISO.png", 960,           680 + 158 * 3,   0],
+			["chip/N100.PNG",          105 + 120 * 1, 635 + 158 * 3,   0],
+			["chip/N200.PNG",          105 + 120 * 2, 620 + 158 * 3,   0],
+			["chip/N400.PNG",          105 + 120 * 3, 610 + 158 * 3,   0],
+			["chip/N600.PNG",          105 + 120 * 4, 610 + 158 * 3,   0],
+			["chip/N800.PNG",          105 + 120 * 5, 615 + 158 * 3,   0],
+			["chip/N1600.PNG",         105 + 120 * 6, 630 + 158 * 3,   0],
+			["chip/N3200.PNG",         105 + 120 * 7, 645 + 158 * 3,   0],
 			
-			["chip/auto.png",          110,           650 + 158 * 4],
-			["chip/_0001_icon.png",    325,           620 + 158 * 4],
-			["chip/icon_0012_sel.png", 540,           645 + 158 * 4],
-			["chip/house.png",         755,           620 + 158 * 4],
-			["chip/_0011_.png",        970,           650 + 158 * 4],
+			["chip/auto.png",          110,           650 + 158 * 4,   0],
+			["chip/_0001_icon.png",    325,           620 + 158 * 4,   0],
+			["chip/icon_0012_sel.png", 540,           645 + 158 * 4,   0],
+			["chip/house.png",         755,           620 + 158 * 4,   0],
+			["chip/_0011_.png",        970,           650 + 158 * 4,   0],
 			
 			["chip/reset.png", 540, 1435],
 			
-			["chip/value_makeup.PNG",  110,           1600],
-			["chip/value_speedy.PNG",  325,           1600],
-			["chip/value_balance.PNG", 540,           1600],
-			["chip/value_ISO.PNG",     755,           1600],
-			["chip/value_focus.PNG",   970,           1600]
+			["chip/value_makeup.PNG",  110,           1600,   0],
+			["chip/value_speedy.PNG",  325,           1600,   0],
+			["chip/value_balance.PNG", 540,           1600,   0],
+			["chip/value_ISO.PNG",     755,           1600,   0],
+			["chip/value_focus.PNG",   970,           1600,   0]
 			
 		];
 		private var _bottomViewData:Array = 
@@ -227,19 +229,23 @@ package UU.show {
 		];
 		private var _manualView_A_Data:Array = 
 		[
-			["chip/word_makeup.PNG", 915,        720 + 158 * 0],
-			["chip/word_speedy.PNG", 915,        720 + 158 * 1],
-			["chip/word_bai.PNG",    915,        720 + 158 * 2],
-			["chip/word_ISO.PNG",    915,        720 + 158 * 3],
-			["chip/word_focus.PNG",  915,        720 + 158 * 4]
+			["chip/word_makeup.PNG", 915,        720 + 158 * 0,   0],
+//			["chip/word_speedy.PNG", 915,        720 + 158 * 1,   0],
+			["chip/word_speedy.PNG", 135,        725 + 158 * 1,   -20],
+			["chip/word_bai.PNG",    915,        720 + 158 * 2,   0],
+//			["chip/word_ISO.PNG",    915,        720 + 158 * 3,   0],
+			["chip/word_ISO.PNG",    85,        715 + 158 * 3,   -20],
+			["chip/word_focus.PNG",  915,        720 + 158 * 4,   0]
 		];
 		private var _manualView_B_Data:Array = 
 		[
-			["chip/word_makeup02.PNG", 1035,        700 + 158 * 0],
-			["chip/word_speedy02.PNG", 1035,        700 + 158 * 1],
-			["chip/word_bai02.PNG",    1035,        700 + 158 * 2],
-			["chip/word_ISO02.PNG",    1035,        700 + 158 * 3],
-			["chip/word_focus02.PNG",  1035,        700 + 158 * 4]
+			["chip/word_makeup02.PNG", 1035,        700 + 158 * 0,   0],
+//			["chip/word_speedy02.PNG", 1035,        700 + 158 * 1,   0],
+			["chip/word_speedy02.PNG", 55,        700 + 158 * 1,   0],
+			["chip/word_bai02.PNG",    1035,        700 + 158 * 2,   0],
+//			["chip/word_ISO02.PNG",    1035,        700 + 158 * 3,   0],
+			["chip/word_ISO02.PNG",    55,        700 + 158 * 3,   0],
+			["chip/word_focus02.PNG",  1035,        700 + 158 * 4,   0]
 		];
 		
 		private function ____doCreateImg( AY:Array, branch:BranchUU ) : ImageUU {
@@ -250,6 +256,7 @@ package UU.show {
 			branch.addNode(img);
 			img.x = AY[1];
 			img.y = AY[2];
+//			img.rotation = AY[3];
 //			img.addEventListener(ATouchEvent.CLICK, onClick);
 			return img;
 		}
@@ -264,6 +271,7 @@ package UU.show {
 			branch.addNode(img);
 			img.x = AY[1];
 			img.y = AY[2];
+//			img.rotation = AY[3];
 			//			img.addEventListener(ATouchEvent.CLICsK, onClick);
 			return img;
 		}
